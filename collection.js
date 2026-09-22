@@ -22,12 +22,14 @@ const collectionCards = [
 ];
 
 const walletInput = document.getElementById("wallet-address");
+const walletStatus = document.getElementById("wallet-status");
 
 walletInput.addEventListener("input", async () => {
     const walletAddress = walletInput.value.trim();
 
     // Empty field = return to the normal showcase.
     if (walletAddress === "") {
+        walletStatus.textContent = "";
         return;
     }
 
@@ -48,6 +50,9 @@ walletInput.addEventListener("input", async () => {
         const data = await response.json();
 
         console.log("TPS NFTs:", data.nfts);
+        walletStatus.textContent =
+            `Found ${data.nfts.length} TPS NFT${data.nfts.length === 1 ? "" : "s"}. ` +
+            `We're currently working on displaying your collection here.`;
 
     } catch (error) {
         console.error("Unable to retrieve TPS NFTs:", error);
