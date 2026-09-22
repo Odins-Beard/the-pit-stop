@@ -37,46 +37,70 @@ export async function onRequestGet(context) {
     try {
         // RANDOM SHOWCASE MODE
         if (showcase === "random") {
-            const selectedNumbers = new Set();
+            const showcaseNfts = [];
+            const attemptedNumbers = new Set();
 
-            while (selectedNumbers.size < 25) {
-                selectedNumbers.add(Math.floor(Math.random() * 1000));
-            }
+            const isCompleteNft = (nft) =>
+                nft.name &&
+                nft.image &&
+                nft.class &&
+                nft.era &&
+                nft.acceleration !== null &&
+                nft.topSpeed !== null &&
+                nft.handling !== null &&
+                nft.prestige !== null;
 
-            const tokenIds = [...selectedNumbers].map(number =>
-                String(number + 1)
-            );
+            // Try up to 5 batches to collect 25 complete NFTs.
+            for (let batch = 0; batch < 5 && showcaseNfts.length < 25; batch++) {
+                const selectedNumbers = [];
 
-            const alchemyUrl = new URL(
-                `https://polygon-mainnet.g.alchemy.com/nft/v3/${env.ALCHEMY_API_KEY}/getNFTMetadataBatch`
-            );
+                while (selectedNumbers.length < 25) {
+                    const number = Math.floor(Math.random() * 1000);
 
-            const response = await fetch(alchemyUrl, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    tokens: tokenIds.map(tokenId => ({
-                        contractAddress: TPS_NFT_CONTRACT,
-                        tokenId
-                    })),
-                    refreshCache: false
-                })
-            });
+                    if (!attemptedNumbers.has(number)) {
+                        attemptedNumbers.add(number);
+                        selectedNumbers.push(number);
+                    }
+                }
 
-            if (!response.ok) {
-                return Response.json(
-                    { error: "Unable to retrieve showcase NFTs." },
-                    { status: 502 }
+                const tokenIds = selectedNumbers.map(number =>
+                    String(number + 1)
                 );
+
+                const alchemyUrl = new URL(
+                    `https://polygon-mainnet.g.alchemy.com/nft/v3/${env.ALCHEMY_API_KEY}/getNFTMetadataBatch`
+                );
+
+                const response = await fetch(alchemyUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        tokens: tokenIds.map(tokenId => ({
+                            contractAddress: TPS_NFT_CONTRACT,
+                            tokenId
+                        })),
+                        refreshCache: true
+                    })
+                });
+
+                if (!response.ok) {
+                    continue;
+                }
+
+                const data = await response.json();
+
+                const validNfts = (data.nfts ?? [])
+                    .map(formatNft)
+                    .filter(isCompleteNft);
+
+                showcaseNfts.push(...validNfts);
             }
 
-            const data = await response.json();
-
-            const nfts = (data.nfts ?? []).map(formatNft);
-
-            return Response.json({ nfts });
+            return Response.json({
+                nfts: showcaseNfts.slice(0, 25)
+            });
         }
 
         // WALLET MODE

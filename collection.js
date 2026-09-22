@@ -3,7 +3,7 @@
 const TPS_NFT_CONTRACT = "0x38b77e639f1db707949937a1aab000b6a603ac30";
 const TPS_OG_CONTRACT = "0x4a999da8e93b8f04ef58c16c50e2bbd2da57dae8";
 
-const USE_RANDOM_SHOWCASE = false;
+const USE_RANDOM_SHOWCASE = true;
 
 const collectionCards = [
     "0",
@@ -25,6 +25,40 @@ const collectionCards = [
 const walletInput = document.getElementById("wallet-address");
 const walletStatus = document.getElementById("wallet-status");
 
+async function loadRandomShowcase() {
+    walletStatus.textContent = "Loading showcase...";
+    document.getElementById("cards-refresh").disabled = true;
+
+    try {
+        const response = await fetch("/api/nfts?showcase=random");
+
+        if (!response.ok) {
+            throw new Error("Showcase request failed.");
+        }
+
+        const data = await response.json();
+
+        if (!data.nfts || data.nfts.length === 0) {
+            throw new Error("No showcase NFTs returned.");
+        }
+
+        renderGallery(data.nfts);
+
+        walletStatus.textContent = "";
+        document.getElementById("cards-refresh").disabled = false;
+
+    } catch (error) {
+        console.error("Unable to load random showcase:", error);
+        walletStatus.textContent = "Unable to load showcase.";
+    }
+}
+
+document.getElementById("cards-refresh").addEventListener("click", () => {
+    if (USE_RANDOM_SHOWCASE && walletInput.value.trim() === "") {
+        loadRandomShowcase();
+    }
+});
+
 walletInput.addEventListener("input", async () => {
     const walletAddress = walletInput.value.trim();
 
@@ -44,6 +78,7 @@ walletInput.addEventListener("input", async () => {
     }
 
     walletStatus.textContent = "Looking for your TPS NFTs...";
+    document.getElementById("cards-refresh").disabled = true;
 
     try {
         const response = await fetch(
@@ -73,3 +108,13 @@ walletInput.addEventListener("input", async () => {
         console.error("Unable to retrieve TPS NFTs:", error);
     }
 });
+
+if (USE_RANDOM_SHOWCASE) {
+    loadRandomShowcase();
+} else {
+    renderGallery(collectionCards.map(number => ({
+        name: `#${number}`,
+        image: imagePath(number)
+    })));
+    document.getElementById("cards-refresh").disabled = true;
+}

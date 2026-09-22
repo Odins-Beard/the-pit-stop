@@ -24,6 +24,7 @@ const dialogImage = document.getElementById("card-dialog-image");
 const dialogCaption = document.getElementById("card-dialog-caption");
 const featuredImage = document.getElementById("featured-image");
 const featuredTitle = document.getElementById("featured-title");
+const refreshButton = document.getElementById("cards-refresh");
 const previousButton = document.getElementById("cards-prev");
 const nextButton = document.getElementById("cards-next");
 
