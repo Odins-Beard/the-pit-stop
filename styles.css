@@ -1409,10 +1409,15 @@ footer small {
 }
 
 .roadmap-hero-art {
-    border: 1px solid #3d332b;
-    background: #151b1c;
-    padding: 35px 25px;
-    box-shadow: 0 25px 80px #0005;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+}
+
+.roadmap-hero-art img {
+    width: 100%;
+    height: auto;
 }
 
 .roadmap-hero-art img {
