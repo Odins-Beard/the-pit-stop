@@ -425,12 +425,14 @@ main>section {
 }
 
 
-
 .community {
     text-align:center;
     background:radial-gradient(ellipse at center,#29201b,#111416 70%)
 }
 
+.community {
+    padding-top: 130px;
+}
 
 
 .community h2 {
@@ -451,6 +453,24 @@ main>section {
     margin-top:15px
 }
 
+
+.community-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.community-links .button {
+    margin-top: 0;
+}
+
+@media (max-width: 700px) {
+    .community-links {
+        flex-direction: column;
+    }
+}
 
 
 footer {
@@ -499,7 +519,14 @@ footer small {
     color:#777
 }
 
+.inline-link {
+    color: var(--orange);
+    font-weight: 600;
+}
 
+.inline-link:hover {
+    text-decoration: underline;
+}
 
 @media(max-width:1000px) {
     header {
@@ -550,12 +577,14 @@ main>section {
 
 @media(max-width:700px) {
     html {
-    scroll-padding-top:75px
-}
+        scroll-padding-top:75px
+    }
 
+    .community {
+        padding-top:80px
+    }
 
-
-header {
+    header {
     padding:12px 5%;
     flex-wrap:nowrap
 }
@@ -1251,6 +1280,7 @@ footer small {
 .shop-copy .button {
     margin-top: 12px;
 }
+
 @media (max-width: 700px) {
     .shop-feature {
         grid-template-columns: 1fr;
@@ -1273,4 +1303,205 @@ footer small {
 
 .studio-credit a:hover {
     color: var(--orange);
+}
+
+
+/* =========================================================
+   Roadmap
+   ========================================================= */
+
+.inline-link {
+    color: var(--orange);
+    font-weight: 600;
+}
+
+.inline-link:hover {
+    text-decoration: underline;
+}
+
+
+/* Roadmap hero */
+
+.roadmap-hero {
+    min-height: 600px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 8%;
+    background:
+        radial-gradient(ellipse at 75% 40%, #29201b, #111416 55%);
+}
+
+.roadmap-hero-copy {
+    max-width: 650px;
+}
+
+.roadmap-hero-art {
+    border: 1px solid #3d332b;
+    background: #151b1c;
+    padding: 35px 25px;
+    box-shadow: 0 25px 80px #0005;
+}
+
+.roadmap-hero-art img {
+    width: 100%;
+}
+
+
+/* Roadmap list */
+
+.roadmap-list {
+    position: relative;
+    display: grid;
+    gap: 24px;
+    max-width: 950px;
+}
+
+.roadmap-list::before {
+    content: "";
+    position: absolute;
+    top: 45px;
+    bottom: 45px;
+    left: 41px;
+    width: 2px;
+    background: linear-gradient(
+        to bottom,
+        var(--orange),
+        #5b4937
+    );
+}
+
+.roadmap-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 82px 1fr;
+    gap: 28px;
+    padding: 34px 38px 34px 0;
+}
+
+.roadmap-item h3 {
+    font-size: clamp(2rem, 3vw, 2.7rem);
+}
+
+.roadmap-marker {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    padding-top: 4px;
+}
+
+.roadmap-marker span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border: 2px solid var(--orange);
+    border-radius: 50%;
+    background: var(--bg);
+    color: var(--orange);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+.roadmap-item p:last-child {
+    margin-bottom: 0;
+}
+
+.roadmap-item-featured {
+    border-color: #5b4937;
+    background:
+        linear-gradient(135deg, #211c19, var(--surface) 65%);
+}
+
+
+/* Klipz teaser */
+
+.roadmap-teaser {
+    margin-top: 26px;
+    padding: 17px 20px;
+    border-left: 3px solid var(--orange);
+    background: #15191b;
+    color: #e1e1df;
+    font-style: italic;
+}
+
+
+/* Closing */
+
+.roadmap-outro {
+    text-align: center;
+    background:
+        radial-gradient(ellipse at center, #29201b, #111416 70%);
+}
+
+.roadmap-outro > p {
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.roadmap-signoff {
+    margin-top: 38px;
+    margin-bottom: 0;
+    font-size: clamp(2.8rem, 5vw, 4.8rem);
+}
+
+.roadmap-signoff span {
+    color: var(--orange);
+}
+
+
+/* Roadmap responsive */
+
+@media (max-width: 900px) {
+
+    .roadmap-hero {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .roadmap-hero-art {
+        max-width: 650px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .roadmap-hero {
+        min-height: 0;
+    }
+
+    .roadmap-hero-art {
+        padding: 20px;
+    }
+
+    .roadmap-list {
+        gap: 18px;
+    }
+
+    .roadmap-list::before {
+        left: 28px;
+    }
+
+    .roadmap-item {
+        grid-template-columns: 56px 1fr;
+        gap: 16px;
+        padding: 25px 20px 25px 0;
+    }
+
+    .roadmap-marker span {
+        width: 42px;
+        height: 42px;
+        font-size: .95rem;
+    }
+
+    .roadmap-teaser {
+        padding: 15px 17px;
+    }
+
 }
