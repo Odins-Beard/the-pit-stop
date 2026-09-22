@@ -846,16 +846,16 @@ footer small {
 
 .carousel-card-number {
     position: absolute;
-    top: 8px;
-    left: 8px;
+    top: 4px;
+    left: 4px;
     z-index: 2;
-    padding: 4px 7px;
-    background: rgba(0, 0, 0, 0.8);
+    padding: 0;
+    background: none;
     color: #fff;
-    font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 1.05rem;
+    font-weight: 800;
     line-height: 1;
-    border-radius: 3px;
+    text-shadow: 1px 1px 2px #000;
     pointer-events: none;
 }
 
