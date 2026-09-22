@@ -30,6 +30,10 @@ walletInput.addEventListener("input", async () => {
     // Empty field = return to the normal showcase.
     if (walletAddress === "") {
         walletStatus.textContent = "";
+        renderGallery(collectionCards.map(number => ({
+            name: `#${number}`,
+            image: imagePath(number)
+        })));
         return;
     }
 
@@ -37,6 +41,8 @@ walletInput.addEventListener("input", async () => {
     if (!/^0x[a-fA-F0-9]{40}$/.test(walletAddress)) {
         return;
     }
+
+    walletStatus.textContent = "Looking for your TPS NFTs...";
 
     try {
         const response = await fetch(
@@ -50,9 +56,17 @@ walletInput.addEventListener("input", async () => {
         const data = await response.json();
 
         console.log("TPS NFTs:", data.nfts);
+
+        if (data.nfts.length === 0) {
+            walletStatus.textContent = "No TPS NFTs found in this wallet.";
+            return;
+        }
+
         walletStatus.textContent =
             `Found ${data.nfts.length} TPS NFT${data.nfts.length === 1 ? "" : "s"}. ` +
-            `We're currently working on displaying your collection here.`;
+            `* Development In Progress *`;
+
+        renderGallery(data.nfts);
 
     } catch (error) {
         console.error("Unable to retrieve TPS NFTs:", error);

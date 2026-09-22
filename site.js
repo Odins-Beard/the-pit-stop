@@ -115,13 +115,67 @@ function makeCard(number, duplicate = false) {
     return card;
 }
 
-// Three copies allow seamless movement in either direction.
-// The middle copy is the starting position.
-for (let copy = 0; copy < 3; copy++) {
-    collectionCards.forEach(number => {
-        track.appendChild(makeCard(number, copy !== 1));
-    });
+let activeCards = collectionCards.map(number => ({
+    name: `#${number}`,
+    image: imagePath(number)
+}));
+
+function renderGallery(cards) {
+    track.innerHTML = "";
+
+    activeCards = cards;
+
+    document.getElementById("card-count").textContent = cards.length;
+
+    position = 0;
+    cycleWidth = 0;
+
+    // Three copies allow seamless movement in either direction.
+    // The middle copy is the starting position.
+    for (let copy = 0; copy < 3; copy++) {
+        cards.forEach(item => {
+            track.appendChild(makeImageCard(item, copy !== 1));
+        });
+    }
+
+    requestAnimationFrame(measureGallery);
 }
+
+function makeImageCard(item, duplicate = false) {
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "carousel-card";
+    card.setAttribute("aria-label", `Vehicle ${item.name}`);
+
+    if (duplicate) {
+        card.tabIndex = -1;
+        card.setAttribute("aria-hidden", "true");
+    }
+
+    const image = document.createElement("img");
+    image.src = item.image;
+    image.alt = `The Pit Stop vehicle ${item.name}`;
+    image.loading = "lazy";
+    image.draggable = false;
+    card.appendChild(image);
+
+    card.addEventListener("click", event => {
+        if (suppressClick || ignoreNextClick) {
+            event.preventDefault();
+            return;
+        }
+
+        dialogImage.src = item.image;
+        dialogImage.alt = `The Pit Stop vehicle ${item.name}`;
+        dialogCaption.textContent = `Vehicle ${item.name}`;
+        dialog.showModal();
+    });
+
+    return card;
+}
+
+renderGallery(activeCards);
+
 
 function measureGallery() {
     const first = track.querySelector(".carousel-card");
@@ -129,7 +183,7 @@ function measureGallery() {
 
     const gap = parseFloat(getComputedStyle(track).gap) || 0;
     cardStep = first.getBoundingClientRect().width + gap;
-    cycleWidth = cardStep * collectionCards.length;
+    cycleWidth = cardStep * activeCards.length;
 
     if (!position) {
         position = cycleWidth;
