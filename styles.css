@@ -200,10 +200,15 @@ main>section {
 
 
 .hero-art {
-    border:1px solid #3d332b;
-    background:#151b1c;
-    padding:35px 25px;
-    box-shadow:0 25px 80px #0005
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+}
+
+.hero-art img {
+    width: 100%;
+    height: auto;
 }
 
 
@@ -1740,4 +1745,61 @@ footer small {
         border-bottom: 1px solid var(--line);
     }
 
+}
+
+.wallet-viewer {
+    max-width: 620px;
+    margin: 20px 0 12px;
+}
+
+.wallet-viewer .eyebrow {
+    margin-bottom: 4px;
+}
+
+.wallet-viewer h3 {
+    margin: 0 0 2px;
+    font-size: 1.15rem;
+}
+
+.wallet-viewer > p:not(.eyebrow) {
+    margin: 0;
+    font-size: .82rem;
+}
+
+.wallet-input-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.wallet-input-row input {
+    flex: 1;
+    min-width: 0;
+    padding: 7px 10px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    font-size: .8rem;
+}
+
+.wallet-input-row .button {
+    padding: 7px 13px;
+    font-size: .75rem;
+}
+
+.wallet-input-row .button:disabled {
+    opacity: .75;
+    cursor: default;
+}
+
+.carousel {
+    margin-top: 15px;
+}
+
+@media (max-width: 700px) {
+    .wallet-input-row {
+        flex-direction: column;
+    }
 }
