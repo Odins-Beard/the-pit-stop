@@ -111,8 +111,7 @@ walletInput.addEventListener("input", async () => {
         }
 
         walletStatus.textContent =
-            `Found ${data.nfts.length} TPS NFT${data.nfts.length === 1 ? "" : "s"}. ` +
-            `* Development In Progress *`;
+            `Found ${data.nfts.length} TPS NFT${data.nfts.length === 1 ? "" : "s"}.`;
 
         renderGallery(data.nfts);
 
