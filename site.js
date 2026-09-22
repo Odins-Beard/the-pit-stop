@@ -159,6 +159,13 @@ function makeImageCard(item, duplicate = false) {
     image.draggable = false;
     card.appendChild(image);
 
+    if (item.image.startsWith("http")) {
+        const label = document.createElement("span");
+        label.className = "carousel-card-number";
+        label.textContent = item.name;
+        card.appendChild(label);
+    }
+
     card.addEventListener("click", event => {
         if (suppressClick || ignoreNextClick) {
             event.preventDefault();

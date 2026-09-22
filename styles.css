@@ -832,6 +832,7 @@ footer small {
 
 
 .carousel-card {
+    position: relative;
     flex: 0 0 calc((100% - 54px) / 4);
     min-width: 0;
     padding: 0;
@@ -842,6 +843,21 @@ footer small {
     transition: transform .2s, border-color .2s;
 }
 
+
+.carousel-card-number {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 2;
+    padding: 4px 7px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    line-height: 1;
+    border-radius: 3px;
+    pointer-events: none;
+}
 
 
 .carousel-card:hover {
