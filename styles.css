@@ -809,7 +809,13 @@ footer small {
     font-size: 1.4rem;
 }
 
-
+#cards-refresh {
+    width: auto;
+    min-width: 82px;
+    padding: 0 14px;
+    font-size: .8rem;
+    font-weight: 700;
+}
 
 .carousel-buttons button:hover,
 .dialog-close:hover {
