@@ -20,3 +20,36 @@ const collectionCards = [
     "1013",
     "1068"
 ];
+
+const walletInput = document.getElementById("wallet-address");
+
+walletInput.addEventListener("input", async () => {
+    const walletAddress = walletInput.value.trim();
+
+    // Empty field = return to the normal showcase.
+    if (walletAddress === "") {
+        return;
+    }
+
+    // Wait until we have a complete Ethereum/Polygon wallet address.
+    if (!/^0x[a-fA-F0-9]{40}$/.test(walletAddress)) {
+        return;
+    }
+
+    try {
+        const response = await fetch(
+            `/api/nfts?owner=${encodeURIComponent(walletAddress)}`
+        );
+
+        if (!response.ok) {
+            throw new Error("NFT request failed.");
+        }
+
+        const data = await response.json();
+
+        console.log("TPS NFTs:", data.nfts);
+
+    } catch (error) {
+        console.error("Unable to retrieve TPS NFTs:", error);
+    }
+});
