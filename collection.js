@@ -29,6 +29,8 @@ async function loadRandomShowcase() {
     walletStatus.textContent = "Loading showcase...";
     document.getElementById("cards-refresh").disabled = true;
 
+    renderGallery([]);
+
     try {
         const response = await fetch("/api/nfts?showcase=random");
 
@@ -50,6 +52,13 @@ async function loadRandomShowcase() {
     } catch (error) {
         console.error("Unable to load random showcase:", error);
         walletStatus.textContent = "Unable to load showcase.";
+
+        renderGallery(collectionCards.map(number => ({
+            name: `#${number}`,
+            image: imagePath(number)
+        })));
+
+        document.getElementById("cards-refresh").disabled = true;
     }
 }
 

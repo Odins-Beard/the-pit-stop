@@ -817,7 +817,7 @@ footer small {
     font-weight: 700;
 }
 
-.carousel-buttons button:hover,
+.carousel-buttons button:not(:disabled):hover,
 .dialog-close:hover {
     border-color: var(--orange);
     color: var(--orange);
