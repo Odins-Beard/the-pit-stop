@@ -878,6 +878,12 @@ footer small {
     background: var(--surface);
 }
 
+
+.carousel-card:has(.wallet-nft-image) {
+    border: 2px solid #c9a227;
+}
+
+
 .carousel-card-metadata {
     padding: 6px;
     background: #000;
