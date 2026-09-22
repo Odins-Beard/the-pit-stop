@@ -220,7 +220,10 @@ function makeImageCard(item, duplicate = false) {
     return card;
 }
 
-renderGallery(activeCards);
+
+if (!USE_RANDOM_SHOWCASE) {
+    renderGallery(activeCards);
+}
 
 
 function measureGallery() {

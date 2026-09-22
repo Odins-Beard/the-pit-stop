@@ -29,7 +29,6 @@ async function loadRandomShowcase() {
     walletStatus.textContent = "Loading showcase...";
     document.getElementById("cards-refresh").disabled = true;
 
-    renderGallery([]);
 
     try {
         const response = await fetch("/api/nfts?showcase=random");
@@ -118,12 +117,15 @@ walletInput.addEventListener("input", async () => {
     }
 });
 
-if (USE_RANDOM_SHOWCASE) {
-    loadRandomShowcase();
-} else {
-    renderGallery(collectionCards.map(number => ({
-        name: `#${number}`,
-        image: imagePath(number)
-    })));
-    document.getElementById("cards-refresh").disabled = true;
-}
+window.addEventListener("DOMContentLoaded", () => {
+    if (USE_RANDOM_SHOWCASE) {
+        renderGallery([]);
+        loadRandomShowcase();
+    } else {
+        renderGallery(collectionCards.map(number => ({
+            name: `#${number}`,
+            image: imagePath(number)
+        })));
+        document.getElementById("cards-refresh").disabled = true;
+    }
+});
