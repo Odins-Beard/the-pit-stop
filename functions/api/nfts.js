@@ -97,6 +97,7 @@ export async function onRequestGet(context) {
             TPS_NFT_CONTRACT
         );
         alchemyUrl.searchParams.set("withMetadata", "true");
+        alchemyUrl.searchParams.set("refreshCache", "true");
         alchemyUrl.searchParams.set("pageSize", "100");
 
         const response = await fetch(alchemyUrl);
