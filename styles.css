@@ -880,7 +880,7 @@ footer small {
 
 
 .carousel-card:has(.wallet-nft-image) {
-    border: 2px solid #c9a227;
+    border: 1px solid #c9a227;
 }
 
 
