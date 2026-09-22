@@ -72,11 +72,15 @@ walletInput.addEventListener("input", async () => {
 
     // Empty field = return to the normal showcase.
     if (walletAddress === "") {
-        walletStatus.textContent = "";
-        renderGallery(collectionCards.map(number => ({
-            name: `#${number}`,
-            image: imagePath(number)
-        })));
+        if (USE_RANDOM_SHOWCASE) {
+            loadRandomShowcase();
+        } else {
+            walletStatus.textContent = "";
+            renderGallery(collectionCards.map(number => ({
+                name: `#${number}`,
+                image: imagePath(number)
+            })));
+        }
         return;
     }
 
