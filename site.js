@@ -159,7 +159,38 @@ function makeImageCard(item, duplicate = false) {
     image.draggable = false;
 
     if (item.image.startsWith("http")) {
-        image.classList.add("wallet-nft-image");
+        const label = document.createElement("span");
+        label.className = "carousel-card-number";
+        label.textContent = item.name;
+        card.appendChild(label);
+
+        const metadata = document.createElement("div");
+        metadata.className = "carousel-card-metadata";
+
+        const type = document.createElement("div");
+        type.className = "carousel-card-type";
+        type.textContent = [item.class, item.era]
+            .filter(Boolean)
+            .join(" / ")
+            .toUpperCase();
+        metadata.appendChild(type);
+
+        const stats = [
+            ["ACCELERATION", item.acceleration],
+            ["TOP SPEED", item.topSpeed],
+            ["HANDLING", item.handling],
+            ["PRESTIGE", item.prestige],
+            ["BOOSTERS", item.booster ?? "NONE"]
+        ];
+
+        stats.forEach(([name, value]) => {
+            const row = document.createElement("div");
+            row.className = "carousel-card-stat";
+            row.textContent = `${name} : ${value ?? "-"}`;
+            metadata.appendChild(row);
+        });
+
+        card.appendChild(metadata);
     }
 
     card.appendChild(image);

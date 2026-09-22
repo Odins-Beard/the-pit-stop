@@ -36,10 +36,31 @@ export async function onRequestGet(context) {
         const data = await response.json();
 
         const nfts = (data.ownedNfts ?? [])
-            .map((nft) => ({
-                name: nft.name?.replace(/^TPS\s*/i, "") ?? null,
-                image: nft.image?.cachedUrl ?? null
-            }))
+            .map((nft) => {
+                const attributes = nft.raw?.metadata?.attributes ?? [];
+
+                const getAttribute = (name) =>
+                    attributes.find(
+                        (attribute) =>
+                            attribute.trait_type?.toLowerCase() === name.toLowerCase()
+                    )?.value ?? null;
+
+                return {
+                    name: nft.name?.replace(/^TPS\s*/i, "") ?? null,
+                    image: nft.image?.cachedUrl ?? null,
+                    model: getAttribute("Model"),
+                    rarity: getAttribute("Rarity"),
+                    class: getAttribute("Class"),
+                    era: getAttribute("Era"),
+                    background: getAttribute("Background"),
+                    colour: getAttribute("Colour"),
+                    acceleration: getAttribute("Acceleration"),
+                    topSpeed: getAttribute("Speed"),
+                    handling: getAttribute("Handling"),
+                    prestige: getAttribute("Prestige"),
+                    booster: getAttribute("Booster")
+                };
+            })
             .sort((a, b) => {
                 const aNumber = parseInt(a.name?.replace("#", ""), 10);
                 const bNumber = parseInt(b.name?.replace("#", ""), 10);
