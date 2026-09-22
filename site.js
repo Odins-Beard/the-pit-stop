@@ -157,6 +157,11 @@ function makeImageCard(item, duplicate = false) {
     image.alt = `The Pit Stop vehicle ${item.name}`;
     image.loading = "lazy";
     image.draggable = false;
+
+    if (item.image.startsWith("http")) {
+        image.classList.add("wallet-nft-image");
+    }
+
     card.appendChild(image);
 
     if (item.image.startsWith("http")) {

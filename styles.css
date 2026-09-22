@@ -869,12 +869,14 @@ footer small {
 
 .carousel-card img {
     width: 100%;
+    height: auto;
+}
+
+.carousel-card img.wallet-nft-image {
     aspect-ratio: 3 / 2;
     object-fit: contain;
     background: var(--surface);
 }
-
-
 
 .card-dialog {
     position: fixed;
