@@ -158,12 +158,23 @@ function makeImageCard(item, duplicate = false) {
     image.loading = "lazy";
     image.draggable = false;
 
-    if (item.image.startsWith("http")) {
+    const isWalletNft = item.image.startsWith("http");
+
+    if (isWalletNft) {
+        image.classList.add("wallet-nft-image");
+    }
+
+    // Image comes first.
+    card.appendChild(image);
+
+    if (isWalletNft) {
+        // NFT number sits over the artwork.
         const label = document.createElement("span");
         label.className = "carousel-card-number";
         label.textContent = item.name;
         card.appendChild(label);
 
+        // Metadata sits underneath the artwork.
         const metadata = document.createElement("div");
         metadata.className = "carousel-card-metadata";
 
@@ -191,15 +202,6 @@ function makeImageCard(item, duplicate = false) {
         });
 
         card.appendChild(metadata);
-    }
-
-    card.appendChild(image);
-
-    if (item.image.startsWith("http")) {
-        const label = document.createElement("span");
-        label.className = "carousel-card-number";
-        label.textContent = item.name;
-        card.appendChild(label);
     }
 
     card.addEventListener("click", event => {
