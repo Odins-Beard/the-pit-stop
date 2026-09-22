@@ -48,8 +48,15 @@ function imagePath(number) {
 
 function selectCard(number) {
     selectedNumber = number;
+
+    if (!featuredImage || !featuredTitle) {
+        enlargeCard(number);
+        return;
+    }
+
     featuredImage.src = imagePath(number);
     featuredImage.alt = `The Pit Stop vehicle ${number}`;
+
     const description = document.getElementById("featured-description");
     const attributes = document.getElementById("featured-attributes");
 
@@ -71,9 +78,13 @@ function enlargeCard(number) {
     dialog.showModal();
 }
 
-document.getElementById("featured-card").addEventListener("click", () => {
-    enlargeCard(selectedNumber);
-});
+const featuredCard = document.getElementById("featured-card");
+
+if (featuredCard) {
+    featuredCard.addEventListener("click", () => {
+        enlargeCard(selectedNumber);
+    });
+}
 
 function makeCard(number, duplicate = false) {
     const card = document.createElement("button");

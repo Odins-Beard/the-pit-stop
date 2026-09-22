@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <title>The Pit Stop | NFT Collection</title>
+
+    <link href="styles.css" rel="stylesheet" />
+    <link href="assets/images/favicon.png" rel="icon" type="image/png" />
+</head>
+
+<body>
+
+<header>
+    <a href="index.html#home">
+        <img alt="The Pit Stop" src="assets/images/main-banner.jpg" />
+    </a>
+
+    <button aria-expanded="false" id="menu">
+        Menu ☰
+    </button>
+
+    <nav id="nav">
+        <a href="index.html#home">Home</a>
+        <a href="collections.html">Collections</a>
+        <a href="index.html#mechanix">Mechanix</a>
+        <a href="index.html#stories">Stories</a>
+        <a href="index.html#gaming">Gaming</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="index.html#shop">Shop</a>
+        <a href="index.html#community">Community</a>
+    </nav>
+</header>
+
+
+<main>
+
+<!-- COLLECTION INTRODUCTION -->
+
+<section>
+
+    <div class="heading">
+
+        <p class="eyebrow">THE PIT STOP NFT COLLECTION</p>
+
+        <h1>Find your ride</h1>
+
+        <p class="lead">
+            5,555 automotive NFTs on the Polygon blockchain, built around
+            cars, rarity, performance and The Pit Stop universe.
+        </p>
+
+        <p>
+            From classics and retro cars to hot hatches, supercars,
+            American muscle, Japanese performance, vans, Aussie muscle
+            and one-off specials, the collection brings together a wide
+            range of car-inspired artwork.
+        </p>
+
+        <p>
+            Every vehicle has its own combination of acceleration,
+            top speed, handling and prestige, with rarity and special
+            Mechanix-tuned vehicles adding another dimension to the collection.
+        </p>
+
+    </div>
+
+
+    <!-- SHOWCASE VIEWER -->
+
+    <div aria-label="Featured Pit Stop vehicle artwork"
+         class="carousel">
+
+        <div class="carousel-controls">
+
+            <p class="carousel-count">
+                <span id="card-count">14</span>
+                featured vehicles · Drag to browse
+            </p>
+
+            <div class="carousel-buttons">
+
+                <button aria-label="Previous vehicles"
+                        id="cards-prev"
+                        title="Click to move, hold to scroll"
+                        type="button">
+                    ←
+                </button>
+
+                <button aria-label="Next vehicles"
+                        id="cards-next"
+                        title="Click to move, hold to scroll"
+                        type="button">
+                    →
+                </button>
+
+            </div>
+
+        </div>
+
+        <div aria-label="Vehicle gallery"
+             class="carousel-track"
+             id="collection-cards"
+             tabindex="0">
+        </div>
+
+    </div>
+
+
+    <dialog aria-label="Vehicle artwork"
+            class="card-dialog"
+            id="card-dialog">
+
+        <button aria-label="Close artwork"
+                class="dialog-close"
+                type="button">
+            ×
+        </button>
+
+        <img alt="" id="card-dialog-image" />
+
+        <p id="card-dialog-caption"></p>
+
+    </dialog>
+
+
+    <div class="actions">
+
+        <a class="button primary"
+           href="https://opensea.io/collection/the-pit-stop-nfts"
+           rel="noopener noreferrer"
+           target="_blank">
+            View on OpenSea ↗
+        </a>
+
+        <a class="button secondary"
+           href="https://launchpad.heymint.xyz/mint/the-pit-stop"
+           rel="noopener noreferrer"
+           target="_blank">
+            Mint Your NFT ↗
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- RARITY & PERFORMANCE -->
+
+<section class="dark">
+
+    <div class="heading">
+
+        <p class="eyebrow">RARITY &amp; PERFORMANCE</p>
+
+        <h2>There's more to a car than its rarity</h2>
+
+        <p class="lead">
+            Every vehicle combines rarity with its own performance
+            characteristics.
+        </p>
+
+    </div>
+
+
+    <div class="collection-detail-row">
+
+        <div class="collection-detail-copy">
+
+            <p class="eyebrow">RARITY</p>
+
+            <h3>
+                Common → Uncommon → Rare → Legendary → Mythic
+            </h3>
+
+            <p>
+                Higher rarity generally brings stronger overall performance,
+                but every model has its own strengths and weaknesses.
+            </p>
+
+            <p>
+                Some cars sit towards the top of their rarity class while
+                others fall towards the bottom, with performance sometimes
+                overlapping the next class.
+            </p>
+
+            <p>
+                In other words: watch out for the supers... and the lemons.
+            </p>
+
+        </div>
+
+        <div class="collection-detail-image">
+            <img alt="The Pit Stop NFT collection rarity structure"
+                 loading="lazy"
+                 src="assets/images/nft-rarity.jpg" />
+        </div>
+
+    </div>
+
+
+    <div class="collection-detail-row reverse">
+
+        <div class="collection-detail-copy">
+
+            <p class="eyebrow">VEHICLE STATS</p>
+
+            <h3>Four attributes, different strengths</h3>
+
+            <p>
+                Every NFT has four underlying attributes:
+            </p>
+
+            <p>
+                <strong>
+                    Acceleration · Top Speed · Handling · Prestige
+                </strong>
+            </p>
+
+            <p>
+                Each individual stat has a maximum value of 5, giving
+                every vehicle its own balance of performance and prestige.
+            </p>
+
+        </div>
+
+        <div class="collection-detail-image">
+            <img alt="The Pit Stop NFT collection stats"
+                 loading="lazy"
+                 src="assets/images/nft-stats.jpg" />
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- MECHANIX TUNING -->
+
+<section>
+
+    <div class="heading">
+
+        <p class="eyebrow">MECHANIX-TUNED</p>
+
+        <h2>Some cars have had a little extra attention</h2>
+
+        <p class="lead">
+            Selected vehicles have been worked on by The Pit Stop Mechanix,
+            giving them special changes to their performance.
+        </p>
+
+    </div>
+
+
+    <div class="collection-detail-row">
+
+        <div class="collection-detail-copy">
+
+            <p class="eyebrow">THE SPECIALISTS</p>
+
+            <h3>Tuned for performance</h3>
+
+            <p>
+                <strong>Sparkz</strong> boosts Acceleration.
+            </p>
+
+            <p>
+                <strong>Torx</strong> boosts Top Speed.
+            </p>
+
+            <p>
+                <strong>Wheelz</strong> boosts Handling.
+            </p>
+
+            <p>
+                Gold vehicles receive a Prestige boost.
+            </p>
+
+            <p>
+                And then there's <strong>Nutz</strong>.
+            </p>
+
+            <p>
+                His enthusiasm occasionally gets ahead of his engineering,
+                so a Nutz-tuned vehicle receives a random nerf rather than
+                a performance boost.
+            </p>
+
+            <p>
+                Don't worry—we kept him away from the rarest cars.
+            </p>
+
+        </div>
+
+        <div class="collection-detail-image">
+            <img alt="The Pit Stop Mechanix NFT boosters"
+                 loading="lazy"
+                 src="assets/images/nft-boosters.jpg" />
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- HOLDER RANKS -->
+
+<section class="dark">
+
+    <div class="heading">
+
+        <p class="eyebrow">HOLDER RANKS</p>
+
+        <h2>The Pit Stop ranks</h2>
+
+        <p class="lead">
+            Your Pit Stop rank reflects the size of your collection,
+            from your first NFT all the way to the top of the leaderboard.
+        </p>
+
+        <p>
+            As your collection grows, so does your rank. It started as
+            a simple way of recognising holders and will become part of
+            the collection experience as The Pit Stop develops.
+        </p>
+
+    </div>
+
+
+    <div class="ranks-layout">
+
+        <div class="ranks-list">
+
+            <div class="rank-item">
+                <span>Fan</span>
+                <strong>0 NFTs</strong>
+            </div>
+
+            <div class="rank-item">
+                <span>Trainee</span>
+                <strong>1+ NFTs</strong>
+            </div>
+
+            <div class="rank-item">
+                <span>Apprentice</span>
+                <strong>3+ NFTs</strong>
+            </div>
+
+            <div class="rank-item">
+                <span>Mechanic</span>
+                <strong>5+ NFTs</strong>
+            </div>
+
+            <div class="rank-item">
+                <span>Technician</span>
+                <strong>10+ NFTs</strong>
+            </div>
+
+            <div class="rank-item">
+                <span>Engineer</span>
+                <strong>25+ NFTs</strong>
+            </div>
+
+            <div class="rank-item">
+                <span>Racer</span>
+                <strong>50+ NFTs</strong>
+            </div>
+
+            <div class="rank-item rank-max">
+                <span>
+                    Stig
+                    <small>MAX RANK</small>
+                </span>
+                <strong>100+ NFTs</strong>
+            </div>
+
+        </div>
+
+
+        <div class="ranks-artwork">
+
+            <img
+                alt="The Pit Stop NFT holder ranks"
+                loading="lazy"
+                src="assets/images/ranks.png"
+            />
+
+        </div>
+
+    </div>
+
+
+    <div class="rank-future">
+
+        <p class="eyebrow">IN THE WERX</p>
+
+        <h3>Your collection, your rank</h3>
+
+        <p>
+            The new collection viewer will let holders view their own
+            Pit Stop NFTs, with their holder rank recognised automatically
+            from the collection in their wallet.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- OG COLLECTION -->
+
+<section>
+
+    <div class="heading">
+
+        <p class="eyebrow">THE OG COLLECTION</p>
+
+        <h2>Where it all began</h2>
+
+        <p class="lead">
+            The Pit Stop OG Passes were a one-time collection of just
+            100 numbered passes created for our earliest supporters.
+        </p>
+
+        <p>
+            The collection sold out and remains a permanent part of
+            Pit Stop history.
+        </p>
+
+        <p>
+            The first 50 holders also had the opportunity to receive
+            a bespoke car NFT of their choice.
+        </p>
+
+        <p>
+            As TPS moves forward, OG ownership will continue to be
+            recognised alongside holder rank.
+        </p>
+
+    </div>
+
+
+    <div class="actions">
+
+        <a class="button primary"
+           href="https://opensea.io/collection/the-pit-stop-og-pass-collection"
+           rel="noopener noreferrer"
+           target="_blank">
+            View OG Collection on OpenSea ↗
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- WHAT'S NEXT -->
+
+<section class="dark">
+
+    <div class="heading">
+
+        <p class="eyebrow">WHAT'S NEXT</p>
+
+        <h2>The collection is part of where we're going</h2>
+
+        <p class="lead">
+            The Pit Stop is moving forward, and the original NFT
+            collections remain part of that journey.
+        </p>
+
+        <p>
+            We're developing new ways for holders to view and enjoy
+            their collections, beginning with the new Pit Stop collection
+            viewer and expanding into future interactive experiences.
+        </p>
+
+        <p>
+            The vehicles, their attributes and their connection to the
+            Mechanix give us plenty to build on across The Pit Stop's
+            games, stories and wider universe.
+        </p>
+
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+
+        <p class="eyebrow">TPS SCRAPS</p>
+        <h2>Who enjoys a nice stake?</h2>
+
+        <div class="collection-detail-row">
+
+            <div class="collection-detail-copy">
+
+                <p>
+                    TPS Scraps staking has been talked about before.
+                    Now it's back on the map and coming soon.
+                </p>
+
+                <p>
+                    Start accumulating when staking goes live.
+                    And you might want to hang on to those Scraps ;)
+                </p>
+
+                <p>
+                    <strong>Something tells us they'll come in handy...</strong>
+                </p>
+
+            </div>
+
+            <div class="collection-detail-image scraps-artwork">
+
+                <img
+                    src="assets/images/scraps.png"
+                    alt="TPS Scraps"
+                    loading="lazy"
+                />
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+
+<footer>
+
+    <img alt="The Pit Stop"
+         src="assets/images/alt-logo.jpg" />
+
+    <div>
+        <strong>The Pit Stop</strong>
+
+        <p>
+            Full Meta Racing · Race. Chill. Repeat.
+        </p>
+    </div>
+
+    <a href="#">
+        Back to top ↑
+    </a>
+
+    <small>
+        © 2022–<span id="year"></span>
+        The Pit Stop
+    </small>
+
+    <div class="studio-credit">
+        A project by
+        <a href="https://highgroundstudios.net/"
+           target="_blank"
+           rel="noopener noreferrer">
+            HIGHGROUND STUDIOS
+        </a>
+    </div>
+
+</footer>
+
+
+<script defer src="collection.js"></script>
+<script defer src="site.js"></script>
+
+</body>
+</html>
