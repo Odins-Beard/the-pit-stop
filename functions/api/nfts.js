@@ -35,10 +35,16 @@ export async function onRequestGet(context) {
 
         const data = await response.json();
 
-        const nfts = (data.ownedNfts ?? []).map((nft) => ({
-            name: nft.name?.replace(/^TPS\s*/i, "") ?? null,
-            image: nft.image?.cachedUrl ?? null
-        }));
+        const nfts = (data.ownedNfts ?? [])
+            .map((nft) => ({
+                name: nft.name?.replace(/^TPS\s*/i, "") ?? null,
+                image: nft.image?.cachedUrl ?? null
+            }))
+            .sort((a, b) => {
+                const aNumber = parseInt(a.name?.replace("#", ""), 10);
+                const bNumber = parseInt(b.name?.replace("#", ""), 10);
+                return aNumber - bNumber;
+            });
 
         return Response.json({ nfts });
 
