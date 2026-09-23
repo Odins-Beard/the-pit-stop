@@ -3,6 +3,7 @@
 const TPS_NFT_CONTRACT = "0x38b77e639f1db707949937a1aab000b6a603ac30";
 const TPS_OG_CONTRACT = "0x4a999da8e93b8f04ef58c16c50e2bbd2da57dae8";
 
+const TEST_MODE = false;
 const USE_RANDOM_SHOWCASE = true;
 
 const collectionCards = [
@@ -24,6 +25,28 @@ const collectionCards = [
 
 const walletInput = document.getElementById("wallet-address");
 const walletStatus = document.getElementById("wallet-status");
+
+function loadTestShowcase() {
+    const testNfts = TEST_NFTS.map(item => ({
+        name: item.name,
+        tokenId: item.tokenId,
+        image: item.image,
+        class: item.attributes.CLASS,
+        era: item.attributes.ERA,
+        rarity: item.attributes.RARITY,
+        acceleration: item.attributes.ACCELERATION,
+        topSpeed: item.attributes.SPEED,
+        handling: item.attributes.HANDLING,
+        prestige: item.attributes.PRESTIGE,
+        booster: item.attributes.BOOSTER,
+        isTestNft: true
+    }));
+
+    renderGallery(testNfts);
+
+    walletStatus.textContent = "";
+    document.getElementById("cards-refresh").disabled = false;
+}
 
 async function loadRandomShowcase() {
     walletStatus.textContent = "Loading showcase...";
@@ -121,7 +144,10 @@ walletInput.addEventListener("input", async () => {
 });
 
 window.addEventListener("DOMContentLoaded", () => {
-    if (USE_RANDOM_SHOWCASE) {
+    if (TEST_MODE) {
+        renderGallery([]);
+        loadTestShowcase();
+    } else if (USE_RANDOM_SHOWCASE) {
         renderGallery([]);
         loadRandomShowcase();
     } else {

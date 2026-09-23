@@ -891,27 +891,171 @@ footer small {
 
 
 .carousel-card-metadata {
-    padding: 6px;
-    background: #000;
-    color: #fff;
+    padding: 12px;
+    background: #121517;
+    color: var(--text);
     text-align: left;
+}
+
+
+/* Vehicle identity */
+
+.carousel-card-identity {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.vehicle-tag-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+    min-width: 0;
+}
+
+.vehicle-tag-label {
+    display: block;
+    color: #c8cbcc;
+    font-size: .48rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    line-height: 1;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-align: center;
+}
+
+.vehicle-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 22px;
+    padding: 3px 7px;
+    border-radius: 2px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .68rem;
     font-weight: 800;
+    letter-spacing: .05em;
+    line-height: 1;
 }
 
-.carousel-card-type,
-.carousel-card-stat {
-    border: 1px solid #777;
-    padding: 5px 7px;
-    margin-top: 4px;
-    line-height: 1.1;
+.vehicle-tag-type {
+    background: #343a3e;
+    color: #f2f1ee;
 }
 
-.carousel-card-type {
-    font-size: 1rem;
+.vehicle-tag-era {
+    background: #5b4937;
+    color: #fff;
 }
 
-.carousel-card-stat {
-    font-size: 0.85rem;
+.vehicle-tag-rarity {
+    color: #111;
+}
+
+.vehicle-tag-rarity.rarity-common {
+    background: #686d70;
+    color: #111;
+}
+
+.vehicle-tag-rarity.rarity-uncommon {
+    background: #087d35;
+    color: #111;
+}
+
+.vehicle-tag-rarity.rarity-rare {
+    background: #003b9e;
+    color: #111;
+}
+
+.vehicle-tag-rarity.rarity-legendary {
+    background: #ff8b24;
+    color: #111;
+}
+
+.vehicle-tag-rarity.rarity-mythic {
+    background: #e8dc00;
+    color: #111;
+}
+
+.vehicle-tag-rarity.rarity-unique {
+    background: #eeeeea;
+    color: #111;
+}
+
+
+/* Performance */
+
+.carousel-card-performance {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 14px;
+    padding: 13px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.vehicle-stat {
+    min-width: 0;
+}
+
+.vehicle-stat-label {
+    display: block;
+    margin-bottom: 6px;
+    color: #c8cbcc;
+    font-size: .61rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    line-height: 1;
+}
+
+.vehicle-stat-gauge {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 3px;
+}
+
+.gauge-segment {
+    display: block;
+    height: 7px;
+    border-radius: 1px;
+    background: #303538;
+}
+
+.gauge-segment.active {
+    background: var(--orange);
+}
+
+
+/* Mechanix tuning */
+
+.carousel-card-tuning {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 34px;
+    padding-top: 11px;
+}
+
+.tuning-value.not-applicable {
+    color: #777;
+}
+
+.tuning-label {
+    color: #c8cbcc;
+    font-size: .58rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+}
+
+.tuning-value {
+    color: #c9a227;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: .04em;
 }
 
 .card-dialog {

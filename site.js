@@ -159,7 +159,7 @@ function makeImageCard(item, duplicate = false) {
     image.loading = "lazy";
     image.draggable = false;
 
-    const isWalletNft = item.image.startsWith("http");
+    const isWalletNft = item.image.startsWith("http") || item.isTestNft;
 
     if (isWalletNft) {
         image.classList.add("wallet-nft-image");
@@ -169,39 +169,132 @@ function makeImageCard(item, duplicate = false) {
     card.appendChild(image);
 
     if (isWalletNft) {
-        // NFT number sits over the artwork.
+        // NFT number over the artwork.
         const label = document.createElement("span");
         label.className = "carousel-card-number";
         label.textContent = item.name;
         card.appendChild(label);
 
-        // Metadata sits underneath the artwork.
         const metadata = document.createElement("div");
         metadata.className = "carousel-card-metadata";
 
-        const type = document.createElement("div");
-        type.className = "carousel-card-type";
-        type.textContent = [item.class, item.era]
-            .filter(Boolean)
-            .join(" / ")
-            .toUpperCase();
-        metadata.appendChild(type);
+        // Vehicle identity.
+        const identity = document.createElement("div");
+        identity.className = "carousel-card-identity";
+
+        [
+            ["type", "TYP", item.class],
+            ["era", "ERA", item.era],
+            ["rarity", "RAR", item.rarity]
+        ].forEach(([kind, labelText, value]) => {
+            if (!value) return;
+
+            const group = document.createElement("div");
+            group.className = "vehicle-tag-group";
+
+            const label = document.createElement("span");
+            label.className = "vehicle-tag-label";
+            label.textContent = labelText;
+
+            const tag = document.createElement("span");
+            tag.className = `vehicle-tag vehicle-tag-${kind}`;
+
+            if (kind === "rarity") {
+                tag.classList.add(`rarity-${value.toLowerCase()}`);
+            }
+
+            tag.textContent = value.toUpperCase();
+
+            group.appendChild(label);
+            group.appendChild(tag);
+            identity.appendChild(group);
+        });
+
+        metadata.appendChild(identity);
+
+        // Performance.
+        const performance = document.createElement("div");
+        performance.className = "carousel-card-performance";
 
         const stats = [
             ["ACCELERATION", item.acceleration],
             ["TOP SPEED", item.topSpeed],
             ["HANDLING", item.handling],
-            ["PRESTIGE", item.prestige],
-            ["BOOSTERS", item.booster ?? "NONE"]
+            ["PRESTIGE", item.prestige]
         ];
 
         stats.forEach(([name, value]) => {
-            const row = document.createElement("div");
-            row.className = "carousel-card-stat";
-            row.textContent = `${name} : ${value ?? "-"}`;
-            metadata.appendChild(row);
+            const stat = document.createElement("div");
+            stat.className = "vehicle-stat";
+
+            const statLabel = document.createElement("span");
+            statLabel.className = "vehicle-stat-label";
+            statLabel.textContent = name;
+
+            const gauge = document.createElement("span");
+            gauge.className = "vehicle-stat-gauge";
+
+            for (let i = 1; i <= 5; i++) {
+                const segment = document.createElement("span");
+                segment.className = i <= value
+                    ? "gauge-segment active"
+                    : "gauge-segment";
+                gauge.appendChild(segment);
+            }
+
+            stat.appendChild(statLabel);
+            stat.appendChild(gauge);
+            performance.appendChild(stat);
         });
 
+        metadata.appendChild(performance);
+
+        // Mechanix tuning.
+        const tuning = document.createElement("div");
+        tuning.className = "carousel-card-tuning";
+
+        const tuningLabel = document.createElement("span");
+        tuningLabel.className = "tuning-label";
+        tuningLabel.textContent = "MECHANIX TUNING";
+
+        const tuningValue = document.createElement("span");
+        tuningValue.className = "tuning-value";
+
+        const tuningLabels = {
+            "A": "Acceleration",
+            "H": "Handling",
+            "S": "Top Speed",
+            "P": "Prestige",
+
+            "AH": "Acceleration + Handling",
+            "HA": "Handling + Acceleration",
+
+            "AS": "Acceleration + Top Speed",
+            "SA": "Top Speed + Acceleration",
+
+            "HS": "Handling + Top Speed",
+            "SH": "Top Speed + Handling",
+
+            "ASH": "Accel + Top Speed + Handling",
+
+            "NA": "Nerfed Acceleration",
+            "NH": "Nerfed Handling",
+            "NS": "Nerfed Top Speed"
+        };
+
+        const hasTuning = item.booster && item.booster !== "None";
+
+        if (hasTuning) {
+            tuningValue.textContent = tuningLabels[item.booster] ?? item.booster;
+        } else {
+            tuningValue.textContent = "N/A";
+            tuningValue.classList.add("not-applicable");
+        }
+
+        tuning.appendChild(tuningLabel);
+        tuning.appendChild(tuningValue);
+
+        metadata.appendChild(tuning);
         card.appendChild(metadata);
     }
 
