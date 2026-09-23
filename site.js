@@ -291,6 +291,10 @@ function makeImageCard(item, duplicate = false) {
             tuningValue.classList.add("not-applicable");
         }
 
+        if (item.booster && item.booster.startsWith("N")) {
+            tuningValue.classList.add("nerfed");
+        }
+
         tuning.appendChild(tuningLabel);
         tuning.appendChild(tuningValue);
 
